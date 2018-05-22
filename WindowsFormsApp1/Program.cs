@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace MovingWindow
 {
 	static class Program
 	{
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
-		[STAThread]
+		[DllImport("user32")]
+		private static extern void SetProcessDPIAware();
+
 		static void Main()
 		{
 			Application.EnableVisualStyles();

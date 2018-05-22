@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{A2B64C30-DE6B-4D37-B0D0-AB9AA71B8BC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovingWindow", "WindowsFormsApp1\MovingWindow.csproj", "{A2B64C30-DE6B-4D37-B0D0-AB9AA71B8BC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
