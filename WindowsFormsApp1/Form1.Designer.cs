@@ -1,6 +1,6 @@
 ﻿namespace MovingWindow
 {
-	partial class Form1
+	partial class MainWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -36,7 +36,7 @@
 			// 
 			this.timer.Tick += new System.EventHandler(this.Step);
 			// 
-			// Form1
+			// MainWindow
 			// 
 			this.AccessibleName = "Form";
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -45,9 +45,9 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "Form1";
+			this.Name = "MainWindow";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Form1";
+			this.Text = "Window";
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyPressed);
 			this.ResumeLayout(false);
 
