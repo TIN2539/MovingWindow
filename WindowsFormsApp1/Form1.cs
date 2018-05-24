@@ -7,23 +7,15 @@ namespace MovingWindow
 	public partial class MainWindow : Form
 	{
 		private const int step = 6;
+		private string direction;
 
 		public MainWindow()
 		{
 			InitializeComponent();
 		}
 
-		private int OldX { get; set; }
-
-		private int OldY { get; set; }
-
 		private void KeyPressed(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Right || e.KeyCode == Keys.Enter)
-			{
-				OldX = Location.X;
-				OldY = Location.Y;
-			}
 			if (!timer.Enabled)
 			{
 				timer.Start();
@@ -31,28 +23,16 @@ namespace MovingWindow
 			switch (e.KeyCode)
 			{
 				case Keys.Up:
-					if (Location.Y - step >= 0)
-					{
-						Location = new Point(Location.X, Location.Y - step);
-					}
+					direction = "Up";
 					break;
 				case Keys.Down:
-					if (Location.Y + Height + step <= Screen.PrimaryScreen.Bounds.Height)
-					{
-						Location = new Point(Location.X, Location.Y + step);
-					}
+					direction = "Down";
 					break;
 				case Keys.Left:
-					if (Location.X - step >= 0)
-					{
-						Location = new Point(Location.X - step, Location.Y);
-					}
+					direction = "Left";
 					break;
 				case Keys.Right:
-					if (Location.X + Width + step <= Screen.PrimaryScreen.Bounds.Width)
-					{
-						Location = new Point(Location.X + step, Location.Y);
-					}
+					direction = "Right";
 					break;
 				case Keys.Enter:
 					CenterToScreen();
@@ -63,48 +43,49 @@ namespace MovingWindow
 
 		private void Step(object sender, EventArgs e)
 		{
-			if (Location.Y + step > OldY && Location.Y + step + Height <= Screen.PrimaryScreen.Bounds.Height && OldY != Location.Y)
+			if (direction == "Down")
 			{
-				OldY = Location.Y;
-				Location = new Point(Location.X, Location.Y + step);
+				if (Location.Y + step + Height <= Screen.PrimaryScreen.Bounds.Height)
+				{
+					Location = new Point(Location.X, Location.Y + step);
+				}
+				else
+				{
+					KeyPressed(this, new KeyEventArgs(Keys.Up));
+				}
 			}
-			else if (Location.Y > OldY)
+			else if (direction == "Up")
 			{
-				OldY = Location.Y;
-				Location = new Point(Location.X, Location.Y - step);
+				if (Location.Y - step >= 0)
+				{
+					Location = new Point(Location.X, Location.Y - step);
+				}
+				else
+				{
+					KeyPressed(this, new KeyEventArgs(Keys.Down));
+				}
 			}
-
-			else if (Location.Y - step < OldY && Location.Y - step >= 0 && OldY != Location.Y)
+			else if (direction == "Left")
 			{
-				OldY = Location.Y;
-				Location = new Point(Location.X, Location.Y - step);
+				if (Location.X - step >= 0)
+				{
+					Location = new Point(Location.X - step, Location.Y);
+				}
+				else
+				{
+					KeyPressed(this, new KeyEventArgs(Keys.Right));
+				}
 			}
-			else if (Location.Y < OldY)
+			else if (direction == "Right")
 			{
-				OldY = Location.Y;
-				Location = new Point(Location.X, Location.Y + step);
-			}
-
-			else if (Location.X + step > OldX && Location.X + step + Width <= Screen.PrimaryScreen.Bounds.Width && OldX != Location.X)
-			{
-				OldX = Location.X;
-				Location = new Point(Location.X + step, Location.Y);
-			}
-			else if (Location.X > OldX)
-			{
-				OldX = Location.X;
-				Location = new Point(Location.X - step, Location.Y);
-			}
-
-			else if (Location.X - step < OldX && Location.X - step >= 0 && OldX != Location.X)
-			{
-				OldX = Location.X;
-				Location = new Point(Location.X - step, Location.Y);
-			}
-			else if (Location.X < OldX)
-			{
-				OldX = Location.X;
-				Location = new Point(Location.X + step, Location.Y);
+				if (Location.X + step + Width <= Screen.PrimaryScreen.Bounds.Width)
+				{
+					Location = new Point(Location.X + step, Location.Y);
+				}
+				else
+				{
+					KeyPressed(this, new KeyEventArgs(Keys.Left));
+				}
 			}
 		}
 	}
