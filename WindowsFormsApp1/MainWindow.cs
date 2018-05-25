@@ -45,9 +45,16 @@ namespace MovingWindow
 		{
 			if (direction == "Down")
 			{
-				if (Location.Y + step + Height <= Screen.PrimaryScreen.Bounds.Height)
+				if (Location.Y + Height != Screen.PrimaryScreen.Bounds.Height)
 				{
-					Location = new Point(Location.X, Location.Y + step);
+					if (Location.Y + step + Height <= Screen.PrimaryScreen.Bounds.Height)
+					{
+						Location = new Point(Location.X, Location.Y + step);
+					}
+					else
+					{
+						Location = new Point(Location.X, Screen.PrimaryScreen.Bounds.Height - Height);
+					}
 				}
 				else
 				{
@@ -56,9 +63,16 @@ namespace MovingWindow
 			}
 			else if (direction == "Up")
 			{
-				if (Location.Y - step >= 0)
+				if (Location.Y != 0)
 				{
-					Location = new Point(Location.X, Location.Y - step);
+					if (Location.Y - step >= 0)
+					{
+						Location = new Point(Location.X, Location.Y - step);
+					}
+					else
+					{
+						Location = new Point(Location.X, 0);
+					}
 				}
 				else
 				{
@@ -67,9 +81,16 @@ namespace MovingWindow
 			}
 			else if (direction == "Left")
 			{
-				if (Location.X - step >= 0)
+				if (Location.X != 0)
 				{
-					Location = new Point(Location.X - step, Location.Y);
+					if (Location.X - step >= 0)
+					{
+						Location = new Point(Location.X - step, Location.Y);
+					}
+					else
+					{
+						Location = new Point(0, Location.Y);
+					}
 				}
 				else
 				{
@@ -78,9 +99,16 @@ namespace MovingWindow
 			}
 			else if (direction == "Right")
 			{
-				if (Location.X + step + Width <= Screen.PrimaryScreen.Bounds.Width)
+				if (Location.X + Width != Screen.PrimaryScreen.Bounds.Width)
 				{
-					Location = new Point(Location.X + step, Location.Y);
+					if (Location.X + step + Width <= Screen.PrimaryScreen.Bounds.Width)
+					{
+						Location = new Point(Location.X + step, Location.Y);
+					}
+					else
+					{
+						Location = new Point(Screen.PrimaryScreen.Bounds.Width - Width, Location.Y);
+					}
 				}
 				else
 				{
