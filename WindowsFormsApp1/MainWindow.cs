@@ -16,11 +16,16 @@ namespace MovingWindow
 
 		private void KeyPressed(object sender, KeyEventArgs e)
 		{
+			ChooseDirection(e.KeyCode);
+		}
+
+		private void ChooseDirection(Keys key)
+		{
 			if (!timer.Enabled)
 			{
 				timer.Start();
 			}
-			switch (e.KeyCode)
+			switch (key)
 			{
 				case Keys.Up:
 					direction = "Up";
@@ -58,7 +63,7 @@ namespace MovingWindow
 				}
 				else
 				{
-					KeyPressed(this, new KeyEventArgs(Keys.Up));
+					ChooseDirection(Keys.Up);
 				}
 			}
 			else if (direction == "Up")
@@ -76,7 +81,7 @@ namespace MovingWindow
 				}
 				else
 				{
-					KeyPressed(this, new KeyEventArgs(Keys.Down));
+					ChooseDirection(Keys.Down);
 				}
 			}
 			else if (direction == "Left")
@@ -94,7 +99,7 @@ namespace MovingWindow
 				}
 				else
 				{
-					KeyPressed(this, new KeyEventArgs(Keys.Right));
+					ChooseDirection(Keys.Right);
 				}
 			}
 			else if (direction == "Right")
@@ -112,7 +117,7 @@ namespace MovingWindow
 				}
 				else
 				{
-					KeyPressed(this, new KeyEventArgs(Keys.Left));
+					ChooseDirection(Keys.Left);
 				}
 			}
 		}
